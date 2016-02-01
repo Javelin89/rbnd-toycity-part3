@@ -15,8 +15,7 @@ class Product
   end
 
   def self.find_by_title(name)
-    #index = @@products.index(title).to_i
-    #@@products.fetch(index)
+    
     @@products.each do |product|
       if product.title == name
         return product
@@ -29,7 +28,7 @@ class Product
 
     @@products.each do |product|
       unless product.stock == 0
-        in_stock_array << product
+        in_stock << product
       end
     end
 
@@ -44,9 +43,9 @@ class Product
 
   def add_to_products
   	if !@@products.to_s.include?(self.title)
-  		@@products << self
-  	else 
-  		raise DuplicateProductError, "'#{@title}' already exists"
+  		  @@products << self
+  	  else 
+  		  raise DuplicateProductError, "'#{@title}' already exists"
   	end
   end
 end
