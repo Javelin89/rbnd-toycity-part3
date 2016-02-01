@@ -15,7 +15,7 @@ class Product
   end
 
   def self.find_by_title(name)
-    
+
     @@products.each do |product|
       if product.title == name
         return product
@@ -39,13 +39,19 @@ class Product
     @stock.to_i > 0 ? true : false
   end
 
+  def reduce_stock
+    @stock = @stock - 1
+  end
+
   private
 
   def add_to_products
-  	if !@@products.to_s.include?(self.title)
-  		  @@products << self
-  	  else 
-  		  raise DuplicateProductError, "'#{@title}' already exists"
-  	end
+  	@@products.each do |product|
+      if product.title == self.title
+        raise DuplicateProductError, "'#{self.title}' already exists"
+      end
+    end
+    @@products << self
   end
+
 end
