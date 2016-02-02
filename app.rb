@@ -1,3 +1,5 @@
+#Methods that produce an error are commented out, in order to let the programm run through
+
 require_relative "lib/errors"
 require_relative "lib/customer"
 require_relative "lib/product"
@@ -46,7 +48,7 @@ puts walter.name # Should return "Walter Latimer"
 
 # TRANSACTIONS
 
-transaction = Transaction.new(walter, nanoblock)
+transaction = Transaction.new(walter, nanoblock, 30.00)
 
 puts transaction.id # Should return 1
 puts transaction.product == nanoblock # Should return true
@@ -57,12 +59,25 @@ puts nanoblock.stock # Should return 11
 
 # PURCHASES
 
-puts walter.purchase(nanoblock)
+puts walter.purchase(nanoblock, 25.00)
 
 puts Transaction.all.count # Should return 2
 
 transaction2 = Transaction.find(2)
 puts transaction2.product == nanoblock # Should return true
 
-#walter.purchase(firehouse)
+# walter.purchase(firehouse)
 # Should return OutOfStockError: 'LEGO Firehouse Headquarter' is out of stock.
+
+#Feature 1
+nanoblock.discount(10.00)
+
+puts nanoblock.price
+
+#Feature 2
+
+puts transaction.discount
+puts transaction2.discount
+
+
+

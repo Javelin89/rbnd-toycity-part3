@@ -20,8 +20,8 @@ class Customer
     end
   end
 
-  def purchase(product)
-  	Transaction.new(@name, product)
+  def purchase(product, sales_price)
+  	Transaction.new(@name, product, sales_price)
   end
 
   private

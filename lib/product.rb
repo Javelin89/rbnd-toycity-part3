@@ -3,6 +3,7 @@ class Product
 
   @@products = []
 
+
   def initialize(options={})
     @title = options[:title]
     @price = options[:price]
@@ -10,12 +11,11 @@ class Product
     add_to_products
   end
 
-  def self.all
+  def self.all #returns @@products array
     @@products
   end
 
-  def self.find_by_title(name)
-
+  def self.find_by_title(name) #returns the product of which the name is given
     @@products.each do |product|
       if product.title == name
         return product
@@ -47,6 +47,16 @@ class Product
     end
   end
 
+def discount(discount_percent)
+  percent = discount_percent/100
+  @price = (@price*(1 - percent.to_f)).round(2)
+end
+
+
+def discount_calc(sale_price)
+  (@price - sale_price.to_f).round(2)
+end
+
   private
 
   def add_to_products
@@ -57,5 +67,4 @@ class Product
     end
     @@products << self
   end
-
 end
