@@ -40,7 +40,11 @@ class Product
   end
 
   def reduce_stock
-    @stock = @stock - 1
+    unless @stock == 0
+      @stock = @stock - 1
+    else 
+      raise OutOfStockError, "'LEGO Firehouse Headquarter' is out of stock."
+    end
   end
 
   private
